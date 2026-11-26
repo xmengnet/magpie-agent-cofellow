@@ -1,0 +1,37 @@
+{
+  "name": "magpie-agent-cofellow",
+  "version": "0.1.0",
+  "description": "Magpie agent plugin: run CoFellow on any magpie model",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "magpie",
+    "magpie-plugin",
+    "cofellow",
+    "agent"
+  ],
+  "files": [
+    "agent.js",
+    "README.md",
+    "LICENSE",
+    "icon.png"
+  ],
+  "magpie": {
+    "agent": "./agent.js",
+    "name": "CoFellow",
+    "summary": {
+      "en": "Run CoFellow on any magpie model. magpie writes ~/.cofellow/config.json and CoFellow hot-reloads it.",
+      "zh": "让 CoFellow 使用 Magpie 的任意模型。Magpie 写入 ~/.cofellow/config.json，CoFellow 自动热加载。"
+    },
+    "icon": "https://raw.githubusercontent.com/xmengnet/magpie-agent-cofellow/main/icon.png"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xmengnet/magpie-agent-cofellow.git"
+  },
+  "homepage": "https://github.com/xmengnet/magpie-agent-cofellow#readme",
+  "bugs": {
+    "url": "https://github.com/xmengnet/magpie-agent-cofellow/issues"
+  },
+  "author": "xmengnet"
+}
