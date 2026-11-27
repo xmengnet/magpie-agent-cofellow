@@ -20,6 +20,9 @@
 
 const PROVIDER_ID = "magpie";
 const CONFIG_PATH = "~/.cofellow/config.json";
+// magpie fetches an https icon and keeps it; it must be a public host.
+const ICON_URL =
+  "https://raw.githubusercontent.com/xmengnet/magpie-agent-cofellow/main/icon.png";
 
 /** The highest reasoning level a Magpie model offers, "" when none. */
 function highestEffort(efforts) {
@@ -155,6 +158,10 @@ export const agent = {
   name: "CoFellow",
   config: CONFIG_PATH,
   format: "json",
+  // A picture for its row on the Agents page. magpie reads the icon from the
+  // agent export, not from package.json's magpie.icon (that one is the
+  // plugin's card in Discover), and falls back to a generic glyph without it.
+  icon: ICON_URL,
   // The key the model is written to; Magpie writes `model.modelName`.
   model: "model.modelName",
   bin: "cofellow",
@@ -176,6 +183,7 @@ export const agent = {
 export const _internal = {
   PROVIDER_ID,
   CONFIG_PATH,
+  ICON_URL,
   highestEffort,
   modelSpec,
   modelMap,

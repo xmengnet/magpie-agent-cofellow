@@ -28,6 +28,13 @@ describe("agent description", () => {
     expect(agent.ua).toEqual(["cofellow"]);
   });
 
+  test("gives its Agents-page row a picture", () => {
+    // magpie reads agent.icon for the row; package.json's magpie.icon is the
+    // plugin's card in Discover and never reaches the row.
+    expect(agent.icon).toBe(_internal.ICON_URL);
+    expect(agent.icon).toMatch(/^https:\/\//);
+  });
+
   test("wires the Library into CoFellow's own files", () => {
     expect(agent.library.instructions).toBe("~/.cofellow/AGENTS.md");
     expect(agent.library.skills).toBe("~/.cofellow/skills");
