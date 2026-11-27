@@ -84,6 +84,20 @@ describe("connect", () => {
     expect(out).not.toHaveProperty("model.modelName");
   });
 
+  test("writes supportsVision even when the model takes no image", () => {
+    // A true left behind would keep CoFellow sending images to a text-only
+    // model, which some vendors answer 400 to.
+    const out = _internal.connect({ gateway, model: chat, models: [chat] });
+    expect(out["model.supportsVision"]).toBe(false);
+  });
+
+  test("a vision model sets it true and the per-model entry agrees", () => {
+    const seen = { ...chat, id: "x/vision", images: true };
+    const out = _internal.connect({ gateway, model: seen, models: [seen] });
+    expect(out["model.supportsVision"]).toBe(true);
+    expect(out["provider.magpie"].models["x/vision"].supportsVision).toBe(true);
+  });
+
   test("does not mutate the input", () => {
     expect(chat.efforts).toEqual(["low", "medium", "high"]);
     expect(chat).not.toHaveProperty("contextWindow");

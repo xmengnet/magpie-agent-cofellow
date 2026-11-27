@@ -103,7 +103,10 @@ export function connect({ gateway, model, models }) {
       // Runtime's request builder reads maxTokens; keep both in sync.
       out["model.maxTokens"] = current.output;
     }
-    if (current.images) out["model.supportsVision"] = true;
+    // Always written, never only when true: a model that takes no image must
+    // clear a `true` left by the model it replaced, or CoFellow keeps sending
+    // images to a model that refuses them.
+    out["model.supportsVision"] = !!current.images;
     if (Array.isArray(current.efforts) && current.efforts.length > 0) {
       out["model.reasoningLevels"] = [...current.efforts];
       out["model.reasoningLevel"] = highestEffort(current.efforts);
